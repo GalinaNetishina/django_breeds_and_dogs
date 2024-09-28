@@ -7,5 +7,4 @@ class DogSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Dog
-        fields = '__all__'
-
+        fields = "__all__"

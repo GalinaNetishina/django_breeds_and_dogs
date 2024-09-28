@@ -7,4 +7,4 @@ class BreedSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Breed
-        fields = '__all__'
+        fields = "__all__"

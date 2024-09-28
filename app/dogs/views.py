@@ -4,7 +4,7 @@ from rest_framework import generics
 
 
 class DogList(generics.ListCreateAPIView):
-    queryset = Dog.objects.all()
+    queryset = Dog.objects.prefetch_related("breed").all()
     serializer_class = DogSerializer
 
     def get(self, request, *args, **kwargs):
@@ -15,7 +15,7 @@ class DogList(generics.ListCreateAPIView):
 
 
 class DogDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Dog.objects.all()
+    queryset = Dog.objects.all().select_related()
     serializer_class = DogSerializer
 
     def get(self, request, *args, **kwargs):

@@ -8,7 +8,7 @@ env = Env()
 env.read_env(BASE_DIR)
 
 
-DEBUG = env("DEBUG", default=False)
+DEBUG = env("DEBUG", default=True)
 SECRET_KEY = env("SECRET_KEY")
 
 # DB_NAME = env("DB_NAME")

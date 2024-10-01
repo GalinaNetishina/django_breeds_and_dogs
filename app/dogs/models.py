@@ -9,11 +9,13 @@ class Dog(models.Model):
 
     name = models.CharField(max_length=32)
     age = models.IntegerField()
-    breed = models.ForeignKey(Breed, on_delete=models.SET_DEFAULT, default="Unknown")
+    breed = models.ForeignKey(
+        Breed, on_delete=models.SET_DEFAULT, blank=True, default="Unknown"
+    )
     gender = models.CharField(choices=Gender, max_length=6, default="male")
     color = models.CharField(max_length=32)
-    favorite_food = models.CharField(max_length=40, blank=True)
-    favorite_toy = models.CharField(max_length=30, blank=True)
+    favorite_food = models.CharField(max_length=40, blank=True, null=True)
+    favorite_toy = models.CharField(max_length=30, blank=True, null=True)
 
     def __str__(self):
         return f"{self.name}, {self.gender}, {self.age}, {self.breed.name}"

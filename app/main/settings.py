@@ -1,18 +1,15 @@
-from environ import Env
+import os
+
 from pathlib import Path
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = Env()
-env.read_env(BASE_DIR)
+DEBUG = os.environ.get('DEBUG') or False
+SECRET_KEY = "xldkhgsz23587-o43eko)gszkoph(zs;ze45"
 
 
-DEBUG = env("DEBUG", default=True)
-SECRET_KEY = env("SECRET_KEY")
-
-# DB_NAME = env("DB_NAME")
-ALLOWED_HOSTS = env("ALLOWED_HOSTS", default=["*"])
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -21,6 +18,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.postgres",
     "breeds",
     "dogs",
 ]
@@ -63,8 +61,12 @@ WSGI_APPLICATION = "main.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        'HOST': os.environ.get('DB_HOST'),
+        "NAME": os.environ.get('DB_NAME'),
+        "USER": os.environ.get('DB_USER'),
+        "PASS": os.environ.get('DB_PASS'),
+        'PORT': '5432'
     }
 }
 

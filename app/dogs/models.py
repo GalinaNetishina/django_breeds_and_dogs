@@ -10,7 +10,7 @@ class Dog(models.Model):
     name = models.CharField(max_length=32)
     age = models.IntegerField()
     breed = models.ForeignKey(
-        Breed, on_delete=models.SET_DEFAULT, blank=True, default="Unknown"
+        Breed, on_delete=models.SET_DEFAULT, null=True, blank=True, default="Unknown"
     )
     gender = models.CharField(choices=Gender, max_length=6, default="male")
     color = models.CharField(max_length=32)
